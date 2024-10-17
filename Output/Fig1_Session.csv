@@ -1,0 +1,16 @@
+"","STW","CS","Nested ANOVA","Cross-sectional ANOVA (Random)","Cross-sectional ANOVA (Fixed)"
+"Subject",0,23,16,22,23
+"Therapist",23,21,0,20,23
+"Subject:Therapist",0,20,22,16,23
+"Session",23,23,0,6,23
+"Subject:Session",0,0,0,13,23
+"Therapist:Session",0,0,0,18,23
+"Subject:Therapist:Session",0,0,23,23,23
+"Trial",0,0,0,0,0
+"Subject:Trial",0,0,0,0,0
+"Therapist:Trial",0,0,0,0,0
+"Subject:Therapist:Trial",0,0,0,0,0
+"Session:Trial",0,0,0,0,0
+"Subject:Session:Trial",0,0,0,0,0
+"Therapist:Session:Trial",0,0,0,0,0
+"Error",0,0,0,0,0

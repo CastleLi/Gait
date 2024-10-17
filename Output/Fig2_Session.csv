@@ -1,0 +1,61 @@
+"Variance","Method","Number of Identified Outcomes"
+"Subject","STW",0
+"Therapist","STW",23
+"Subject
+Therapist","STW",0
+"Session","STW",23
+"Subject
+Session","STW",0
+"Therapist
+Session","STW",0
+"Subject
+Therapist
+Session","STW",0
+"Subject","CS",23
+"Therapist","CS",21
+"Subject
+Therapist","CS",20
+"Session","CS",23
+"Subject
+Session","CS",0
+"Therapist
+Session","CS",0
+"Subject
+Therapist
+Session","CS",0
+"Subject","Nested ANOVA",16
+"Therapist","Nested ANOVA",0
+"Subject
+Therapist","Nested ANOVA",22
+"Session","Nested ANOVA",0
+"Subject
+Session","Nested ANOVA",0
+"Therapist
+Session","Nested ANOVA",0
+"Subject
+Therapist
+Session","Nested ANOVA",23
+"Subject","Cross-sectional ANOVA (Random)",22
+"Therapist","Cross-sectional ANOVA (Random)",20
+"Subject
+Therapist","Cross-sectional ANOVA (Random)",16
+"Session","Cross-sectional ANOVA (Random)",6
+"Subject
+Session","Cross-sectional ANOVA (Random)",13
+"Therapist
+Session","Cross-sectional ANOVA (Random)",18
+"Subject
+Therapist
+Session","Cross-sectional ANOVA (Random)",23
+"Subject","Cross-sectional ANOVA (Fixed)",23
+"Therapist","Cross-sectional ANOVA (Fixed)",23
+"Subject
+Therapist","Cross-sectional ANOVA (Fixed)",23
+"Session","Cross-sectional ANOVA (Fixed)",23
+"Subject
+Session","Cross-sectional ANOVA (Fixed)",23
+"Therapist
+Session","Cross-sectional ANOVA (Fixed)",23
+"Subject
+Therapist
+Session","Cross-sectional ANOVA (Fixed)",23
