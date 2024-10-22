@@ -1,11 +1,15 @@
 library(openxlsx)
 library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(gridExtra)
 InputFolder <- "../Data/"
 OutputFolder <- "../Output/"
 InputFile2 <- "Simulation_Results_NoSession20230711.xlsx"
 InputFile1 <- "Simulation_Results_Session20230711.xlsx"
 
 InputSheets <- getSheetNames(paste0(InputFolder, InputFile1))
+
 
 for(File in c("No", "")){
   # Fig 1 Session effect ----------------------------------------------------
@@ -52,9 +56,7 @@ for(File in c("No", "")){
   Summary_All <- t(Summary_All)
   
   Summary_All <- as.data.frame(Summary_All)
-  
-  write.csv(Summary_All, row.names = TRUE,
-            paste0(OutputFolder,"Fig1_", File, "Session.csv"))
+
   
   Summary_All$Variance <- rownames(Summary_All)
   # exclude trial related error
@@ -67,20 +69,6 @@ for(File in c("No", "")){
   Summary_All$Variance <- gsub(":", "\n", Summary_All$Variance)
   levels(Summary_All$Variance) <- unique(Summary_All$Variance)
   
-  
-  # plot
-  png(paste0(OutputFolder, "Fig1_", File, "Session.png"),
-      res = 600, width = 9, height = 9, units = "in")
-  Fig1 <- ggplot(Summary_All, aes(x=factor(Variance, levels = levels(Variance)), 
-                          y=`Number of Identified Outcomes`,fill = Method)) +
-    geom_bar(stat="identity", position = "dodge", width=.5)+ 
-    theme(legend.position = "top")+
-    scale_fill_discrete(name = "Model specification")+
-    xlab("Source of Variance")
-  Figures[[paste0(File, 1)]] <- Fig1
-  print(Figures[[paste0(File, 1)]])
-  
-  dev.off()
   
   # quantification
   Summary_Ratio <- NULL
@@ -104,7 +92,7 @@ for(File in c("No", "")){
   levels(Summary_Ratio$Variance) <- gsub(":", "\n", levels(Summary_XSectional_Long$variable))
   
   write.csv(Summary_All, row.names = FALSE,
-            paste0(OutputFolder, "Fig2_", File, "Session.csv"))
+            paste0(OutputFolder, "Fig1_", File, "Session.csv"))
   
   P_values <- sapply(unique(Summary_Ratio$Method), function(Method){
     Summary_Ratio_Sub <- Summary_Ratio[which(Summary_Ratio$Method==Method),]
@@ -116,22 +104,39 @@ for(File in c("No", "")){
   P_values <- as.data.frame(P_values)
   
   write.csv(P_values, row.names = FALSE,col.names = FALSE,
-            paste0(OutputFolder, "Fig2_Pvalues_", File, "Session.csv"))
+            paste0(OutputFolder, "Fig1_Pvalues_", File, "Session.csv"))
   
-  png(paste0(OutputFolder, "Fig2_", File, "Session.png"),
+  
+  label_data <- Summary_Ratio %>%
+    group_by(Variance, Method) %>%
+    summarize(count_above_1 = sum(Value > 1.0))
+  all_combinations <- expand.grid(Variance = unique(Summary_Ratio$Variance), 
+                                  Method = unique(Summary_Ratio$Method))
+  label_data_full <- all_combinations %>%
+    left_join(label_data, by = c("Variance", "Method")) %>%
+    mutate(count_above_1 = ifelse(is.na(count_above_1), 0, count_above_1))
+  label_data_full <- as.data.frame(label_data_full)
+  label_data_full$count_above_1 <- paste0("N=", label_data_full$count_above_1)
+  label_data_full$Variance <- factor(label_data_full$Variance, levels = levels(Summary_Ratio$Variance))
+  
+  png(paste0(OutputFolder, "Fig1_", File, "Session.png"),
       res = 600, width = 12, height = 8, units = "in")
   Fig2 <- ggplot(Summary_Ratio, aes(x=factor(Variance, levels = levels(Variance)), 
-                            y=Value, fill = factor(Variance, levels = levels(Variance)))) + 
+                                    y=Value)) + 
     geom_boxplot() +
     facet_wrap(~factor(Method, levels = c("STW", "CS", "Nested ANOVA", "Cross-sectional ANOVA (Random)", "Cross-sectional ANOVA (Fixed)")),
                scales="free_y") +
     theme(legend.position="none") +
     scale_fill_discrete(name = "Model specification")+
     xlab("Source of Variance") +
-    ylab("Averaged Ratio")
+    ylab("Averaged Ratio") + 
+    geom_text(data = label_data_full, aes(x = factor(Variance, levels = levels(Variance)), 
+                                          y = -1,
+                                          label = count_above_1), 
+              vjust = 1.5, size = 3)
   Figures[[paste0(File, 2)]] <- Fig2
   print(Figures[[paste0(File, 2)]])
-
+  
   dev.off()
   
   
@@ -144,7 +149,7 @@ for(File in c("No", "")){
 
 
 
-# Fig 3 Session effect ----------------------------------------------------
+# Fig 2 Session effect ----------------------------------------------------
 
 for(File in c("No", "")){
   Error_Var <- NULL
@@ -178,36 +183,97 @@ for(File in c("No", "")){
   Error_Var <- as.data.frame(Error_Var)
   colnames(Error_Var) <- c("Method", "Error", "Outcome")
   
-  write.csv(Error_Var, row.names = FALSE,
-            paste0(OutputFolder, "Fig3_", File, "Session.csv"))
-  
-  png(paste0(OutputFolder, "Fig3_", File, "Session.png"),
-      res = 600, width = 12, height = 8, units = "in")
-  
-  Fig3 <- ggplot(Error_Var, aes(x=Outcome, 
-                        y=Error, 
-                        fill = factor(Method, levels = c("STW", "CS", "Nested ANOVA", "Cross-sectional ANOVA (Random)", "Cross-sectional ANOVA (Fixed)")))) + 
-    geom_boxplot() + 
-    theme(legend.position = "top") + 
-    scale_fill_discrete(name = "Model specification") +
-    xlab("Outcomes")
-  Figures[[paste0(File, 3)]] <- Fig3
-  print(Figures[[paste0(File, 3)]])
-  dev.off()
-  
+
   Averaged_Error <- aggregate(Error_Var$Error, list(Error_Var$Method, Error_Var$Outcome), mean)
   colnames(Averaged_Error) <- c("Method", "Outcomes", "Error")
-  print(  pairwise.wilcox.test(Averaged_Error$Error, Averaged_Error$Method,
-                             p.adjust.method = "BH"))
   Fig3_Pvalues <- as.data.frame(pairwise.wilcox.test(Averaged_Error$Error, Averaged_Error$Method,
                                                      p.adjust.method = "BH")$p.value)
   
-  write.csv(Fig3_Pvalues, row.names = TRUE,
-            paste0(OutputFolder, "Fig3_Pvalues_", File, "Session.csv"))
   
+  Averaged_Error_Names <- Averaged_Error
+  Averaged_Error_Names$Method <- make.names(Averaged_Error_Names$Method)
+  method_pairs <- combn(unique(Averaged_Error$Method), 2, simplify = FALSE)
+  method_pairs_main <- combn(unique(Averaged_Error$Method)[c(1:2, 5)], 2, simplify = FALSE)
+  method_pairs_supp <- setdiff(method_pairs, method_pairs_main)
+  
+  plots <- list()
+  Supp_plots <- list()
+  
+  for (pair in method_pairs_main) {
+    bivariate_data <- Averaged_Error_Names %>%
+      filter(Method %in% make.names(pair)) %>%
+      pivot_wider(names_from = Method, values_from = Error, names_prefix = "Error_")
+    
+    bivariate_data <- as.data.frame(bivariate_data)
+    
+    overall_limits <- range(bivariate_data[,-1])
+    
+    plot <- ggplot(bivariate_data, aes_string(x = paste("Error_", make.names(pair)[1], sep = ""), 
+                                              y = paste("Error_", make.names(pair)[2], sep = ""))) +
+      geom_point() +
+      geom_abline(slope=1.0, intercept=0) + 
+      labs(x = pair[1],
+           y = pair[2]) +
+      xlim(overall_limits) +  
+      ylim(overall_limits) +  
+      annotate("text", x = overall_limits[1], y = overall_limits[2], 
+               label = paste("adjusted p-value =", format(round(Fig3_Pvalues[which(levels(Averaged_Error$Method)==pair[2]) - 1, 
+                                                                             which(levels(Averaged_Error$Method)==pair[1])], 4), 
+                                                          nsmall = 2)), 
+               hjust = 0, vjust = 1, size = 4, color = "blue") +
+      theme_minimal()
+    
+    plots[[paste(make.names(pair)[1], make.names(pair)[2], sep = "_vs_")]] <- plot
+  }
+  
+  for (pair in method_pairs_supp) {
+    bivariate_data <- Averaged_Error_Names %>%
+      filter(Method %in% make.names(pair)) %>%
+      pivot_wider(names_from = Method, values_from = Error, names_prefix = "Error_")
+    
+    bivariate_data <- as.data.frame(bivariate_data)
+    
+    overall_limits <- range(bivariate_data[,-1])
+    
+    plot <- ggplot(bivariate_data, aes_string(y = paste("Error_", make.names(pair)[1], sep = ""), 
+                                              x = paste("Error_", make.names(pair)[2], sep = ""))) +
+      geom_point() +
+      geom_abline(slope=1.0, intercept=0) + 
+      labs(y = pair[1],
+           x = pair[2]) +
+      xlim(overall_limits) +  
+      ylim(overall_limits) +  
+      annotate("text", x = overall_limits[1], y = overall_limits[2], 
+               label = paste("adjusted p-value =", format(round(Fig3_Pvalues[which(levels(Averaged_Error$Method)==pair[2]) - 1, 
+                                                                             which(levels(Averaged_Error$Method)==pair[1])], 4), 
+                                                          nsmall = 2)), 
+               hjust = 0, vjust = 1, size = 4, color = "blue") +
+      theme_minimal()
+    
+    Supp_plots[[paste(make.names(pair)[1], make.names(pair)[2], sep = "_vs_")]] <- plot
+  }
+  
+  
+  write.csv(Averaged_Error, row.names = FALSE,
+            paste0(OutputFolder, "Fig2_", File, "Session.csv"))
+  
+  png(paste0(OutputFolder, "Fig2_", File, "Session.png"),
+      res = 600, width = 9, height = 3, units = "in")
+  do.call(gridExtra::grid.arrange, c(plots, ncol = 3))
+  dev.off()
+  
+  png(paste0(OutputFolder, "Supp_Fig1_", File, "Session.png"),
+      res = 600, width = 12, height = 6, units = "in")
+  do.call(gridExtra::grid.arrange, c(Supp_plots, ncol = 4))
+  dev.off()
+  
+
   rm(list = setdiff(ls(),
                     c("InputFolder", "OutputFolder", "InputFile1", "InputFile2", "InputSheets", "File", "Figures")))
   
   
 }
+
+
+
 

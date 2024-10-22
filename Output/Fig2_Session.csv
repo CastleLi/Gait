@@ -1,61 +1,326 @@
-"Variance","Method","Number of Identified Outcomes"
-"Subject","STW",0
-"Therapist","STW",23
-"Subject
-Therapist","STW",0
-"Session","STW",23
-"Subject
-Session","STW",0
-"Therapist
-Session","STW",0
-"Subject
-Therapist
-Session","STW",0
-"Subject","CS",23
-"Therapist","CS",21
-"Subject
-Therapist","CS",20
-"Session","CS",23
-"Subject
-Session","CS",0
-"Therapist
-Session","CS",0
-"Subject
-Therapist
-Session","CS",0
-"Subject","Nested ANOVA",16
-"Therapist","Nested ANOVA",0
-"Subject
-Therapist","Nested ANOVA",22
-"Session","Nested ANOVA",0
-"Subject
-Session","Nested ANOVA",0
-"Therapist
-Session","Nested ANOVA",0
-"Subject
-Therapist
-Session","Nested ANOVA",23
-"Subject","Cross-sectional ANOVA (Random)",22
-"Therapist","Cross-sectional ANOVA (Random)",20
-"Subject
-Therapist","Cross-sectional ANOVA (Random)",16
-"Session","Cross-sectional ANOVA (Random)",6
-"Subject
-Session","Cross-sectional ANOVA (Random)",13
-"Therapist
-Session","Cross-sectional ANOVA (Random)",18
-"Subject
-Therapist
-Session","Cross-sectional ANOVA (Random)",23
-"Subject","Cross-sectional ANOVA (Fixed)",23
-"Therapist","Cross-sectional ANOVA (Fixed)",23
-"Subject
-Therapist","Cross-sectional ANOVA (Fixed)",23
-"Session","Cross-sectional ANOVA (Fixed)",23
-"Subject
-Session","Cross-sectional ANOVA (Fixed)",23
-"Therapist
-Session","Cross-sectional ANOVA (Fixed)",23
-"Subject
-Therapist
-Session","Cross-sectional ANOVA (Fixed)",23
+"Method","Outcomes","Error"
+"STW","Ankle
+Flexion",0.0291995486217244
+"CS","Ankle
+Flexion",0.0361952738123581
+"Nested ANOVA","Ankle
+Flexion",0.0361952738123585
+"Cross-sectional ANOVA (Random)","Ankle
+Flexion",0.0287742333741641
+"Cross-sectional ANOVA (Fixed)","Ankle
+Flexion",0.0287742333741641
+"STW","Ankle
+Moments
+Flexion",1.24328009013406e-06
+"CS","Ankle
+Moments
+Flexion",1.54114927839547e-06
+"Nested ANOVA","Ankle
+Moments
+Flexion",1.54114927839545e-06
+"Cross-sectional ANOVA (Random)","Ankle
+Moments
+Flexion",8.85897320010627e-07
+"Cross-sectional ANOVA (Fixed)","Ankle
+Moments
+Flexion",8.85897320010627e-07
+"STW","Head
+Ad
+Ab",0.0152421112760086
+"CS","Head
+Ad
+Ab",0.0188938671025517
+"Nested ANOVA","Head
+Ad
+Ab",0.0188938671025523
+"Cross-sectional ANOVA (Random)","Head
+Ad
+Ab",0.0131212499647155
+"Cross-sectional ANOVA (Fixed)","Head
+Ad
+Ab",0.0131212499647155
+"STW","Head
+Flexion",0.0262820526868282
+"CS","Head
+Flexion",0.0325787944764036
+"Nested ANOVA","Head
+Flexion",0.0325787944764032
+"Cross-sectional ANOVA (Random)","Head
+Flexion",0.0307861929220373
+"Cross-sectional ANOVA (Fixed)","Head
+Flexion",0.0307861929220373
+"STW","Head
+Int
+Ext",0.00720889142047455
+"CS","Head
+Int
+Ext",0.00893602165662716
+"Nested ANOVA","Head
+Int
+Ext",0.00893602165662737
+"Cross-sectional ANOVA (Random)","Head
+Int
+Ext",0.0103165095687353
+"Cross-sectional ANOVA (Fixed)","Head
+Int
+Ext",0.0103165095687353
+"STW","Hip
+Ad
+Ab",0.00597570537644556
+"CS","Hip
+Ad
+Ab",0.00740738478955132
+"Nested ANOVA","Hip
+Ad
+Ab",0.00740738478955175
+"Cross-sectional ANOVA (Random)","Hip
+Ad
+Ab",0.00535757980096584
+"Cross-sectional ANOVA (Fixed)","Hip
+Ad
+Ab",0.00535757980096584
+"STW","Hip
+Flexion",0.0311390405472798
+"CS","Hip
+Flexion",0.0385994356783727
+"Nested ANOVA","Hip
+Flexion",0.0385994356783739
+"Cross-sectional ANOVA (Random)","Hip
+Flexion",0.0287334649744248
+"Cross-sectional ANOVA (Fixed)","Hip
+Flexion",0.0287334649744248
+"STW","Hip
+Int
+Ext",0.0155559705143979
+"CS","Hip
+Int
+Ext",0.019282921783473
+"Nested ANOVA","Hip
+Int
+Ext",0.0192829217834728
+"Cross-sectional ANOVA (Random)","Hip
+Int
+Ext",0.0119592228424154
+"Cross-sectional ANOVA (Fixed)","Hip
+Int
+Ext",0.0119592228424154
+"STW","Hip
+Moments
+Ad
+Ab",6.64702848486406e-06
+"CS","Hip
+Moments
+Ad
+Ab",8.23954572602949e-06
+"Nested ANOVA","Hip
+Moments
+Ad
+Ab",8.23954572602968e-06
+"Cross-sectional ANOVA (Random)","Hip
+Moments
+Ad
+Ab",4.71208185710466e-06
+"Cross-sectional ANOVA (Fixed)","Hip
+Moments
+Ad
+Ab",4.71208185710466e-06
+"STW","Hip
+Moments
+Flexion",8.9307571877206e-05
+"CS","Hip
+Moments
+Flexion",0.000110704177639458
+"Nested ANOVA","Hip
+Moments
+Flexion",0.000110704177639458
+"Cross-sectional ANOVA (Random)","Hip
+Moments
+Flexion",8.06965804363392e-05
+"Cross-sectional ANOVA (Fixed)","Hip
+Moments
+Flexion",8.06965804363392e-05
+"STW","Hip
+Moments
+Int
+Ext",2.05049575803382e-07
+"CS","Hip
+Moments
+Int
+Ext",2.54176036672961e-07
+"Nested ANOVA","Hip
+Moments
+Int
+Ext",2.54176036672966e-07
+"Cross-sectional ANOVA (Random)","Hip
+Moments
+Int
+Ext",1.37348338596872e-07
+"Cross-sectional ANOVA (Fixed)","Hip
+Moments
+Int
+Ext",1.37348338596872e-07
+"STW","Knee
+Ad
+Ab",0.00136152874564218
+"CS","Knee
+Ad
+Ab",0.00168772834095229
+"Nested ANOVA","Knee
+Ad
+Ab",0.00168772834095227
+"Cross-sectional ANOVA (Random)","Knee
+Ad
+Ab",0.00155305423167988
+"Cross-sectional ANOVA (Fixed)","Knee
+Ad
+Ab",0.00155305423167988
+"STW","Knee
+Flexion",0.0819539849084386
+"CS","Knee
+Flexion",0.1015887937926
+"Nested ANOVA","Knee
+Flexion",0.101588793792599
+"Cross-sectional ANOVA (Random)","Knee
+Flexion",0.0690445270017383
+"Cross-sectional ANOVA (Fixed)","Knee
+Flexion",0.0690445270017383
+"STW","Knee
+Int
+Ext",0.00455829060261153
+"CS","Knee
+Int
+Ext",0.0056503810594639
+"Nested ANOVA","Knee
+Int
+Ext",0.00565038105946447
+"Cross-sectional ANOVA (Random)","Knee
+Int
+Ext",0.00454063062906062
+"Cross-sectional ANOVA (Fixed)","Knee
+Int
+Ext",0.00454063062906062
+"STW","Knee
+Moments
+Ad
+Ab",3.78265619838853e-06
+"CS","Knee
+Moments
+Ad
+Ab",4.68891757925268e-06
+"Nested ANOVA","Knee
+Moments
+Ad
+Ab",4.68891757925276e-06
+"Cross-sectional ANOVA (Random)","Knee
+Moments
+Ad
+Ab",3.01299564726538e-06
+"Cross-sectional ANOVA (Fixed)","Knee
+Moments
+Ad
+Ab",3.01299564726538e-06
+"STW","Knee
+Moments
+Flexion",1.49899867498731e-05
+"CS","Knee
+Moments
+Flexion",1.85813377420308e-05
+"Nested ANOVA","Knee
+Moments
+Flexion",1.85813377420307e-05
+"Cross-sectional ANOVA (Random)","Knee
+Moments
+Flexion",1.32540437441456e-05
+"Cross-sectional ANOVA (Fixed)","Knee
+Moments
+Flexion",1.32540437441456e-05
+"STW","Knee
+Moments
+Int
+Ext",1.09333140870697e-07
+"CS","Knee
+Moments
+Int
+Ext",1.35527539204309e-07
+"Nested ANOVA","Knee
+Moments
+Int
+Ext",1.35527539204312e-07
+"Cross-sectional ANOVA (Random)","Knee
+Moments
+Int
+Ext",6.4467260802004e-08
+"Cross-sectional ANOVA (Fixed)","Knee
+Moments
+Int
+Ext",6.4467260802004e-08
+"STW","Pelvis
+Obilquity",0.00831521466963174
+"CS","Pelvis
+Obilquity",0.0103074015175651
+"Nested ANOVA","Pelvis
+Obilquity",0.0103074015175657
+"Cross-sectional ANOVA (Random)","Pelvis
+Obilquity",0.00614839035324508
+"Cross-sectional ANOVA (Fixed)","Pelvis
+Obilquity",0.00614839035324508
+"STW","Pelvis
+Rotation",0.0115907058821154
+"CS","Pelvis
+Rotation",0.014367645833028
+"Nested ANOVA","Pelvis
+Rotation",0.0143676458330275
+"Cross-sectional ANOVA (Random)","Pelvis
+Rotation",0.0135296670080509
+"Cross-sectional ANOVA (Fixed)","Pelvis
+Rotation",0.0135296670080509
+"STW","Pelvis
+Tilt",0.00816907143752053
+"CS","Pelvis
+Tilt",0.0101262448027836
+"Nested ANOVA","Pelvis
+Tilt",0.0101262448027834
+"Cross-sectional ANOVA (Random)","Pelvis
+Tilt",0.00885529082442458
+"Cross-sectional ANOVA (Fixed)","Pelvis
+Tilt",0.00885529082442458
+"STW","Trunk
+Ad
+Ab",0.0463282888054009
+"CS","Trunk
+Ad
+Ab",0.0574277746650265
+"Nested ANOVA","Trunk
+Ad
+Ab",0.0574277746650284
+"Cross-sectional ANOVA (Random)","Trunk
+Ad
+Ab",0.0300366297237765
+"Cross-sectional ANOVA (Fixed)","Trunk
+Ad
+Ab",0.0300366297237765
+"STW","Trunk
+Flexion",0.0135173733838183
+"CS","Trunk
+Flexion",0.0167559107570007
+"Nested ANOVA","Trunk
+Flexion",0.0167559107570011
+"Cross-sectional ANOVA (Random)","Trunk
+Flexion",0.0142222584863736
+"Cross-sectional ANOVA (Fixed)","Trunk
+Flexion",0.0142222584863736
+"STW","Trunk
+Int
+Ext",0.12857110628617
+"CS","Trunk
+Int
+Ext",0.15937460050057
+"Nested ANOVA","Trunk
+Int
+Ext",0.159374600500575
+"Cross-sectional ANOVA (Random)","Trunk
+Int
+Ext",0.0735791673021198
+"Cross-sectional ANOVA (Fixed)","Trunk
+Int
+Ext",0.0735791673021198
